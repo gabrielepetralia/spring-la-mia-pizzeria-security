@@ -133,7 +133,7 @@ public class PizzaController {
 			return "pizza-create-edit";
 		}
 		
-		return "redirect:/pizzas";
+		return "redirect:/pizzas/" + pizza.getId();
 	}
 	
 	@PostMapping("/delete/{id}")

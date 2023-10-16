@@ -17,7 +17,8 @@ public class AuthConfig {
 		throws Exception {
 			 
 			http.csrf().disable()
-				.authorizeHttpRequests()				
+				.authorizeHttpRequests()
+				.requestMatchers("/api/pizzas/**").permitAll()
 		        .requestMatchers("/pizzas/create").hasAuthority("admin")
 		        .requestMatchers("/pizzas/update/**").hasAuthority("admin")
 		        .requestMatchers("/pizzas/delete/**").hasAuthority("admin")
