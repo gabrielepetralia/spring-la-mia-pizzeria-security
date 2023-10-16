@@ -18,7 +18,24 @@
 </head>
 
 <header th:fragment="header" class="bg-dark text-white">
-	<h1 class="text-center py-4">Pizzeria <span class="text-danger">Java Spring</span></h1>
+	<div class="d-flex justify-content-around align-items-center">
+		<div></div>
+		
+		<h1 class="text-center py-4">Pizzeria <span class="text-danger">Java Spring</span></h1>
+		
+		<div>
+			<div sec:authorize="hasAnyAuthority('user', 'admin')">
+				<span sec:authentication="name" class="me-3"></span> 
+				<a href="/logout" class="btn btn-danger">Logout</a>
+			</div>
+			
+			<div sec:authorize="!hasAnyAuthority('user', 'admin')">
+				<a href="/login" class="btn btn-danger">Login</a>
+			</div>
+		</div>
+	
+	</div>
+	
 	<div class="banner d-flex justify-content-center mb-5"></div>
 </header>
 

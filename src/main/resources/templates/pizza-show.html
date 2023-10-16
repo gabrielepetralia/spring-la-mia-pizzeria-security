@@ -11,7 +11,7 @@
 		<div class="pizza-index-img mb-4">
 			<img alt="" th:src="*{imgUrl}" onerror="this.src='/imgs/noimage.png'">
 		</div>
-		<div class="mb-3 d-flex">
+		<div class="mb-3 d-flex" sec:authorize="hasAnyAuthority('admin')">
 			<a th:href="@{/pizzas/update/{id}(id=*{id})}" class="btn btn-secondary me-2" title="Modifica pizza"><i class="fa-solid fa-pen-to-square"></i></a>
 			<form 
 				th:action="@{/pizzas/delete/{id}(id=*{id})}" 
@@ -29,7 +29,7 @@
 		</div>
 		<div th:if="*{specialOffers.size() > 0}">
 			<div class="d-flex mb-2">
-				<div>
+				<div sec:authorize="hasAnyAuthority('admin')">
 					<a th:href="@{/pizzas/special-offer/{pizza_id}(pizza_id=*{id})}" class="btn btn-secondary me-2" title="Aggiungi una nuova offerta"><i class="fa-solid fa-plus"></i></a>
 				</div>
 				<span class="text-danger fw-semibold fs-5">Offerte :</span>
@@ -41,7 +41,7 @@
 				class="d-flex justify-content-between my-2"
 				>
 					<span>- [[*{title}]]</span>
-					<div class="d-flex justify-content-end ms-2">
+					<div sec:authorize="hasAnyAuthority('admin')" class="d-flex justify-content-end ms-2">
 						<a th:href="@{/pizzas/special-offer/update/{id}(id=*{id})}" class="btn btn-secondary me-2" title="Modifica offerta"><i class="fa-solid fa-pen-to-square"></i></a>
 						<form 
 							th:action="@{/pizzas/special-offer/delete/{specialOffer_id}(specialOffer_id=*{id})}" 

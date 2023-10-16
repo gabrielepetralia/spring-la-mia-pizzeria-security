@@ -8,7 +8,7 @@
 	<header th:replace="~{frags :: header}"></header>
 	
 	<div class="d-flex justify-content-around mb-4">
-		<div>
+		<div sec:authorize="hasAnyAuthority('admin')">
 			<a href="/ingredients" class="btn btn-danger">Ingredienti</a>
 		</div>
 		
@@ -19,7 +19,7 @@
 			</div>
 		</form>
 		
-		<div>
+		<div sec:authorize="hasAnyAuthority('admin')">
 			<a href="/pizzas/create" class="btn btn-danger" title="Aggiungi una nuova pizza"><i class="fa-solid fa-plus"></i></a>
 		</div>
 	</div>
@@ -36,7 +36,7 @@
 				  		<p class="mb-0 fw-semibold text-secondary"><span class="fs-5">[[*{getFormattedPrice()}]]</span>€</p>
 				  	</div>
 				</a>
-				<div class="mt-2 d-flex justify-content-end">
+				<div sec:authorize="hasAnyAuthority('admin')" class="mt-2 d-flex justify-content-end">
 					<a th:href="@{/pizzas/update/{id}(id=*{id})}" class="btn btn-secondary me-2" title="Modifica pizza"><i class="fa-solid fa-pen-to-square"></i></a>
 					<form 
 						th:action="@{/pizzas/delete/{id}(id=*{id})}" 
